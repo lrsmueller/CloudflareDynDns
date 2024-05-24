@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "CloudflareDynDns": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7022"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "httpPort": 30203,
+      "useSSL": false
+    }
+  }
+}
