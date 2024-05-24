@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 namespace CloudflareDynDns;
 
 public class ResponseObject
@@ -19,10 +20,12 @@ public class ResponseObject
     public string Status { get; set; }
 
     public string Message { get; set; }
+	
+    [JsonIgnore]
+	public IActionResult Result => new JsonResult(this);
 
-    public OkObjectResult Result => new OkObjectResult(JsonSerializer.Serialize(this));
-    
-    public static ResponseObject SuccessResponseObject = new("success", "DNS Entry updated");
+	[JsonIgnore]
+	public static ResponseObject SuccessResponseObject = new("success", "DNS Entry updated");
 }
 
 
