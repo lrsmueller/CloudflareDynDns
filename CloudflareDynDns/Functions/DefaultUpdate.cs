@@ -6,7 +6,12 @@ using CloudFlare.Client;
 using CloudFlare.Client.Api.Authentication;
 using CloudFlare.Client.Api.Zones.DnsRecord;
 using CloudFlare.Client.Api.Result;
-namespace CloudflareDynDns;
+
+using CloudflareDynDns.Refresh;
+using CloudflareDynDns.Response;
+using CloudflareDynDns.Helper;
+
+namespace CloudflareDynDns.Functions;
 
 public partial class DefaultUpdate
 {
@@ -18,17 +23,17 @@ public partial class DefaultUpdate
     }
 
     [Function(nameof(DefaultUpdate))]
-    public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "get",Route ="")] HttpRequest req)
+    public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "get", Route = "")] HttpRequest req)
     {
-		_logger.LogMetric("DEFAULT_CALL", 1);
-		var refresh = new RefreshObject(req, _logger);
+        _logger.LogMetric("DEFAULT_CALL", 1);
+        var refresh = new DefaultRefresh(req, _logger);
         if (!refresh.Success)
         {
-			_logger.LogMetric("PARAMETER_ERROR", refresh.Errors.Count);
-			return new ResponseObject(refresh.Errors).Result;
+            _logger.LogMetric("PARAMETER_ERROR", refresh.Errors.Count);
+            return new DynDnsResponse(refresh.Errors).Result;
         }
-        
-        return await DynDnsService.UpdateDynDnsEntry(refresh,_logger);
+
+        return await DynDnsHelper.UpdateDynDnsEntry(refresh, _logger);
 
     }
 

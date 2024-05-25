@@ -1,17 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-namespace CloudflareDynDns;
+namespace CloudflareDynDns.Response;
 
-public class ResponseObject
+public class DynDnsResponse
 {
-    public ResponseObject(string status, string message)
+    public DynDnsResponse(string status, string message)
     {
         Status = status;
         Message = message;
     }
 
-    public ResponseObject(IEnumerable<string> Errors)
+    public DynDnsResponse(IEnumerable<string> Errors)
     {
         Status = "error";
         Message = string.Join(", ", Errors);
@@ -20,12 +20,12 @@ public class ResponseObject
     public string Status { get; set; }
 
     public string Message { get; set; }
-	
-    [JsonIgnore]
-	public IActionResult Result => new JsonResult(this);
 
-	[JsonIgnore]
-	public static ResponseObject SuccessResponseObject = new("success", "DNS Entry updated");
+    [JsonIgnore]
+    public IActionResult Result => new JsonResult(this);
+
+    [JsonIgnore]
+    public static DynDnsResponse SuccessResponseObject = new("success", "DNS Entry updated");
 }
 
 
