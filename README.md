@@ -1,6 +1,6 @@
 # CloudflareDynDns
 
-[![Deploy to Functions](https://github.com/lrsmueller/CloudflareDynDns/actions/workflows/master_f3k-cloudflare-dyndns-func.yml/badge.svg)](https://github.com/lrsmueller/CloudflareDynDns/actions/workflows/master_f3k-cloudflare-dyndns-func.yml)
+[![Deploy to Functions](https://github.com/lrsmueller/CloudflareDynDns/actions/workflows/azure-deploy.yml/badge.svg)](https://github.com/lrsmueller/CloudflareDynDns/actions/workflows/azure-deploy.yml)
 [![Publish Docker](https://github.com/lrsmueller/CloudflareDynDns/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/lrsmueller/CloudflareDynDns/actions/workflows/docker-publish.yml)
 
 Azure Functions App providing a DynDns Service 2 Custom Urls.
@@ -17,7 +17,7 @@ The DynDns V2 Url uses http basic auth. however this is not checked. The passwor
 
 #### Parameters for (test.example.org)
 - USERNAME: record (test)
-- PASSWORD: Cloudflare Api Token (TODO link)
+- PASSWORD: Cloudflare API token - [Create an API token](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/) with read/write access to the zone (example.org) you want to use
 - DOMAIN: hostname (example.org)
 - IPV4: ipv4 address 
 - IPV6: ipv6 address
@@ -35,3 +35,4 @@ The DynDns V2 Url uses http basic auth. however this is not checked. The passwor
 
 ### Run on Docker
 `docker run -d -p 8080:8080 ghcr.io/lrsmueller/cloudflaredyndns:latest`
+
