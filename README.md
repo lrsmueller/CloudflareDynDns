@@ -1,6 +1,6 @@
 # CloudflareDynDns
 
-[![Deploy to Functions](https://github.com/lrsmueller/CloudflareDynDns/actions/workflows/azure-deploy.yml/badge.svg)](https://github.com/lrsmueller/CloudflareDynDns/actions/workflows/azure-deploy.yml)
+[![Deploy to Azure Functions](https://github.com/lrsmueller/CloudflareDynDns/actions/workflows/main_f3k-cloudflare-dyndns-func.yml/badge.svg)](https://github.com/lrsmueller/CloudflareDynDns/actions/workflows/main_f3k-cloudflare-dyndns-func.yml)
 [![Publish Docker](https://github.com/lrsmueller/CloudflareDynDns/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/lrsmueller/CloudflareDynDns/actions/workflows/docker-publish.yml)
 
 Azure Functions App providing a DynDns Service 2 Custom Urls.
