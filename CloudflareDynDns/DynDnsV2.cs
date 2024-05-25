@@ -15,7 +15,6 @@ namespace CloudflareDynDns
         }
 
 		//http://{username}:{password}@upddyndns.com/update?hostname={yourhostname}&myip={ipaddress},{ip6address}&
-		//http://test:***REMOVED***@localhost:7022/api/update?hostname=***REMOVED***2.***REMOVED***&myip=217.80.70.77,2001:db8:3333:4444:5555:6666:7777:8888&
 		//password -> token
 		//hostname -> record.zone
 		//myip -> split(,)
