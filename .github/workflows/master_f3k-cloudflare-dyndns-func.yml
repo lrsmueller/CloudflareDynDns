@@ -14,7 +14,7 @@ env:
   DOTNET_VERSION: '8.0.x' # set this to the dotnet version to use
 
 jobs:
-  build-and-deploy:
+  build-and-deploy-azure:
     runs-on: windows-latest
     permissions:
       id-token: write #This is required for requesting the JWT
