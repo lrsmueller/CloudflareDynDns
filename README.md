@@ -1,9 +1,12 @@
 # CloudflareDynDns
 
-Azure Functions App providing a DynDns Service 2 Custom Urls.
-Support for DynDnsV2 (Telecom Smart 3+4) 
+[![Deploy to Functions](https://github.com/lrsmueller/CloudflareDynDns/actions/workflows/master_f3k-cloudflare-dyndns-func.yml/badge.svg)](https://github.com/lrsmueller/CloudflareDynDns/actions/workflows/master_f3k-cloudflare-dyndns-func.yml)
+[![Publish Docker](https://github.com/lrsmueller/CloudflareDynDns/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/lrsmueller/CloudflareDynDns/actions/workflows/docker-publish.yml)
 
-### Urls
+Azure Functions App providing a DynDns Service 2 Custom Urls.
+Support for DynDnsV2 (Telekom Speedport Smart 3+4) 
+
+## Urls
 ##### Default custom url 
 ```https://functionsapp.local/?token=PASSWORD&record=RECORD&zone=DOMAIN&ipv4=IPV4&ipv6=IPV6&code=YOURAZUREADCODE```
 
@@ -20,14 +23,15 @@ The DynDns V2 Url uses http basic auth. however this is not checked. The passwor
 - IPV6: ipv6 address
 - YOURAZURECODE: the Function Authentication Code. Unless you turn auth to anonymous in the Code 
 
-### Setup
+**Known Issue** Fritz!Box routers require the Domain to be the complete hostname [#1](https://github.com/lrsmueller/CloudflareDynDns/issues/1)
+
+## Setup
+### Setup on Azure
 - Fork Repo
 - Create an Azure Function App with this Repo
 - (optional) Bind your custom ddns domain to the Function App
 - Create a Cloudflare API Token
 - Create and edit the URLs for your DDNS Client/Router 
 
-### ToDo
-- [ ] Route which provides a HTML page to easily create your URLs, 
-- [ ] Rework DynDnsV2 to User USERNAME as RECORD and hostname without split 
-- [ ] Support for Root URL (example.org)
+### Run on Docker
+`docker run -d -p 8080:8080 ghcr.io/lrsmueller/cloudflaredyndns:latest`
