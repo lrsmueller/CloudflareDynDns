@@ -15,7 +15,7 @@ Support for DynDnsV2 (Telekom Speedport Smart 3+4)
 
 The DynDns V2 Url uses http basic auth. however this is not checked. The password is only used as the Cloudflare Token
 
-##### FritzBox rul
+##### FritzBox url
 ```https://functionsapp.local/fb/?username=<USERNAME>&domain=<DOMAIN>&token=<TOKEN>&ipv4=<IPV4>&ipv6=<IPV6>&code=<YOURAZUREFUNCTIONCODE>```
 
 #### Parameters for (test.example.org)
