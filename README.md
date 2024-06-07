@@ -8,12 +8,15 @@ Support for DynDnsV2 (Telekom Speedport Smart 3+4)
 
 ## Urls
 ##### Default custom url 
-```https://functionsapp.local/?token=PASSWORD&record=RECORD&zone=DOMAIN&ipv4=IPV4&ipv6=IPV6&code=YOURAZUREADCODE```
+```https://functionsapp.local/?token=<TOKEN>&record=<RECORD>&zone=<ZONE>&ipv4=<IPV4>&ipv6=<IPV6>&code=<YOURAZUREFUNCTIONCODE>```
 
 ##### DynDnsV2 url 
-```https://USERNAME:PASSWORD@functionsapp.local/update?hostname=DOMAIN&myip=IPV4,IPV6&code=YOURAZUREADCODE```
+```https://USERNAME:PASSWORD@functionsapp.local/update/?hostname=<HOSTNAME>&myip=<MYIP>&code=<YOURAZUREFUNCTIONCODE>```
 
 The DynDns V2 Url uses http basic auth. however this is not checked. The password is only used as the Cloudflare Token
+
+##### FritzBox rul
+```https://functionsapp.local/fb/?username=<USERNAME>&domain=<DOMAIN>&token=<TOKEN>&ipv4=<IPV4>&ipv6=<IPV6>&code=<YOURAZUREFUNCTIONCODE>```
 
 #### Parameters for (test.example.org)
 - USERNAME: record (test)
@@ -22,8 +25,6 @@ The DynDns V2 Url uses http basic auth. however this is not checked. The passwor
 - IPV4: ipv4 address 
 - IPV6: ipv6 address
 - YOURAZURECODE: the Function Authentication Code. Unless you turn auth to anonymous in the Code 
-
-**Known Issue** Fritz!Box routers require the Domain to be the complete hostname [#1](https://github.com/lrsmueller/CloudflareDynDns/issues/1)
 
 ## Setup
 ### Setup on Azure

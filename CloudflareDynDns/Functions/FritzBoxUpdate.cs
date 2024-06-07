@@ -1,3 +1,6 @@
+using CloudflareDynDns.Helper;
+using CloudflareDynDns.Refresh;
+using CloudflareDynDns.Response;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
@@ -14,11 +17,17 @@ namespace CloudflareDynDns.Functions
             _logger = logger;
         }
 
-        [Function("FritzBoxUpdate")]
-        public IActionResult Run([HttpTrigger(AuthorizationLevel.Function, "get", Route = "fb")] HttpRequest req)
+        [Function(nameof(FritzBoxUpdate))]
+        public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "get", Route = "fb")] HttpRequest req)
         {
-            _logger.LogInformation("C# HTTP trigger function processed a request.");
-            return new OkObjectResult("Welcome to Azure Functions!");
+            _logger.LogMetric("FB_CALL", 1);
+            var refresh = new FritzBoxRefresh(req, _logger);
+            if (!refresh.Success)
+            {
+                _logger.LogMetric("PARAMETER_ERROR", refresh.Errors.Count);
+                return new DynDnsResponse(refresh.Errors).Result;
+            }
+            return await DynDnsHelper.UpdateDynDnsEntry(refresh, _logger);
         }
     }
 }
