@@ -18,6 +18,10 @@ public class DefaultRefresh : RefreshBase
     {
     }
 
+    public DefaultRefresh()
+    {
+    }
+
     protected override Dictionary<string, bool> Parameters => new Dictionary<string, bool>()
     {
         { TokenParameter, true },

@@ -83,6 +83,10 @@ public class DynDnsV2Refresh : RefreshBase
         }
     }
 
+    public DynDnsV2Refresh()
+    {
+    }
+
     public override bool HasIpv6 => _hasIpv6;
 
     public override string Ipv4 => _ipv4;
@@ -104,7 +108,7 @@ public class DynDnsV2Refresh : RefreshBase
     private string _record = string.Empty;
     private bool _hasIpv6 = false;
 
-    protected override Dictionary<string, bool> Parameters => new()
+    protected override Dictionary<string, bool> Parameters =>new()
     {
         {HostnameParameter,true },
         {IpAddressParameter,true},

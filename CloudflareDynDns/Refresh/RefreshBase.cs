@@ -2,12 +2,15 @@
 using CloudFlare.Client.Enumerators;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using System.Text;
 
 namespace CloudflareDynDns.Refresh
 {
     public abstract class RefreshBase
     {
-        protected ILogger _logger;
+        protected ILogger? _logger;
+        protected HttpRequest? _request;
+        protected List<string> _errors = new List<string>();
         public RefreshBase(HttpRequest request, ILogger logger)
         {
             _logger = logger;
@@ -19,8 +22,11 @@ namespace CloudflareDynDns.Refresh
             }
         }
 
-        protected List<string> _errors = new List<string>();
-        protected HttpRequest _request;
+        protected RefreshBase()
+        {
+            
+        }
+
         protected abstract Dictionary<string, bool> Parameters { get; }
 
         public abstract bool HasIpv6 { get; }
@@ -72,6 +78,23 @@ namespace CloudflareDynDns.Refresh
             _logger.LogError(message);
             _logger.LogMetric("REFRESH_OBJ_ERROR", 1);
             _errors.Add($"{message}");
+        }
+
+        public string Url()
+        {
+            bool _isFirst = true;
+            var _url = new StringBuilder();
+            foreach(var parameter in Parameters)
+            {
+                if(!_isFirst)
+                {
+                    _url.Append("&");
+                }
+                _url.Append($"{parameter.Key}=<{parameter.Key.ToUpper()}>");
+                _isFirst = false;   
+            }
+
+            return _url.ToString();
         }
     }
 }
